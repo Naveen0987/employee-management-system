@@ -24,6 +24,12 @@ public class EmployeeController {
 	public  EmployeeController(EmployeeService employeeService) {
 		this.employeeService = employeeService;
 	}
+	
+@GetMapping("/")
+public String home() {
+    return "Employee Management System API is running!";
+}
+
 	@GetMapping("/employees/{id}")
 	public Employee getemployee(@PathVariable Long id ) {
 		return employeeService.getEmployeeById(id);
