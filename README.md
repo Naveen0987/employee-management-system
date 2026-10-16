@@ -64,12 +64,12 @@ Base URL: `https://employee-management-system-f8wz.onrender.com`
 
 ```json
 {
-  "name": "Ravi Kumar",
-  "email": "ravi@gmail.com",
-  "phone": "9876543210",
+  "name": Naveen Ch",
+  "email": "Naveen@gmail.com",
+  "phone": "8798544880",
   "department": "IT",
   "designation": "Software Developer",
-  "salary": 50000
+  "salary": 90000
 }
 ```
 
