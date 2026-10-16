@@ -1,110 +1,136 @@
 # Employee Management System
 
-A RESTful backend application built using Java, Spring Boot, Spring Data JPA, and MySQL to manage employee records efficiently.
+A RESTful backend application built using **Java, Spring Boot, Spring Data JPA, and PostgreSQL** to manage employee records through REST APIs.
+
+## Live Demo
+
+- **Live API:** https://employee-management-system-f8wz.onrender.com/
+- **GitHub Repository:** https://github.com/Naveen0987/employee-management-system
 
 ## Features
 
-- Create new employee records
+- Create employee records
 - Retrieve all employees
 - Retrieve an employee by ID
 - Update employee details
 - Delete employee records
-- Validate request data using Jakarta Validation
-- Handle exceptions centrally using Spring REST Controller Advice
-- Persist employee information in MySQL
+- Request validation using Jakarta Validation
+- Centralized exception handling
+- PostgreSQL database integration
+- Cloud deployment using Docker and Render
 
 ## Tech Stack
 
 - **Language:** Java
-- **Backend Framework:** Spring Boot
-- **Data Access:** Spring Data JPA, Hibernate
-- **Database:** MySQL
-- **API Style:** REST API
+- **Framework:** Spring Boot
+- **Persistence:** Spring Data JPA, Hibernate
+- **Database:** PostgreSQL
+- **API:** REST
 - **Build Tool:** Maven
-- **API Testing:** Postman
-- **IDE:** Spring Tools Suite (STS)
+- **Testing:** Postman
+- **Containerization:** Docker
+- **Deployment:** Render
 
-## Employee Fields
+## Employee Details
 
 Each employee record contains:
 
-- ID
-- Name
-- Email
-- Phone
-- Department
-- Designation
-- Salary
+- `id`
+- `name`
+- `email`
+- `phone`
+- `department`
+- `designation`
+- `salary`
 
-## API Endpoints
+## REST API Endpoints
 
-Base URL: `http://localhost:8080`
+Base URL: `https://employee-management-system-f8wz.onrender.com`
 
-| Method | Endpoint | Description |
+| HTTP Method | Endpoint | Description |
 |---|---|---|
-| POST | `/` | Create an employee |
-| GET | `/employees` | Get all employees |
-| GET | `/employees/{id}` | Get an employee by ID |
+| GET | `/` | API welcome message |
+| POST | `/employees` | Create an employee |
+| GET | `/employees` | Retrieve all employees |
+| GET | `/employees/{id}` | Retrieve an employee by ID |
 | PUT | `/employees/{id}` | Update an employee |
 | DELETE | `/employees/{id}` | Delete an employee |
 
-## Validation and Error Handling
+## Example Request
 
-- Validates employee input fields.
-- Returns HTTP 400 for invalid request data.
-- Returns HTTP 404 when an employee does not exist.
-- Uses centralized exception handling for consistent error responses.
+### Create an Employee
 
-## Prerequisites
+**POST** `/employees`
 
-- Java Development Kit (JDK)
-- MySQL Server
+```json
+{
+  "name": "Ravi Kumar",
+  "email": "ravi@gmail.com",
+  "phone": "9876543210",
+  "department": "IT",
+  "designation": "Software Developer",
+  "salary": 50000
+}
+```
+
+Send the request with `Content-Type: application/json`.
+
+## Validation and Exception Handling
+
+- Validates incoming employee data.
+- Returns HTTP `400 Bad Request` for validation failures.
+- Returns HTTP `404 Not Found` when an employee does not exist.
+- Uses centralized exception handling with `@RestControllerAdvice`.
+
+## Run Locally
+
+### Prerequisites
+
+- JDK 25
+- PostgreSQL
 - Git
-- Postman (for API testing)
 
-## Setup and Installation
+### 1. Clone the repository
 
-1. Clone the repository:
+```bash
+git clone https://github.com/Naveen0987/employee-management-system.git
+cd employee-management-system
+```
 
-   ```bash
-   git clone https://github.com/Naveen0987/employee-management-system.git
-   ```
+### 2. Create a PostgreSQL database
 
-2. Open the project directory:
+Create a database in PostgreSQL and note its connection details.
 
-   ```bash
-   cd employee-management-system
-   ```
+### 3. Configure environment variables
 
-3. Create a MySQL database:
+Set the following environment variables before running the application:
 
-   ```sql
-   CREATE DATABASE employee_management_db;
-   ```
+- `DB_URL` — JDBC URL, for example `jdbc:postgresql://localhost:5432/employee_management_db`
+- `DB_USERNAME` — PostgreSQL username
+- `DB_PASSWORD` — PostgreSQL password
 
-4. Configure database settings in `src/main/resources/application.properties`.
+Do not commit database credentials to GitHub.
 
-   Set your database URL and username, and configure the `DB_PASSWORD` environment variable with your MySQL password. Do not commit actual credentials to GitHub.
+### 4. Run the application
 
-5. Run the application from Spring Tools Suite, or use the Maven wrapper:
+```bash
+./mvnw spring-boot:run
+```
 
-   ```bash
-   ./mvnw spring-boot:run
-   ```
+The application starts on `http://localhost:8080` by default.
 
-6. Test the endpoints using Postman.
+## Testing
 
-## Future Improvements
+Use Postman to test the REST API endpoints, including successful CRUD operations, invalid input, and requests for nonexistent employee IDs.
 
-- Standardize HTTP status codes for all operations
-- Add pagination and sorting
-- Add automated tests for REST endpoints
-- Deploy the application to a cloud platform
+## Deployment
+
+The application is containerized using Docker and deployed on Render with a PostgreSQL database.
+
+**Note:** The live service may take some time to respond after inactivity because of the hosting plan.
 
 ## Author
 
 **Naveen Chintakuntla**
 
-- GitHub: [Naveen0987](https://github.com/Naveen0987)
-- Portfolio: [My Portfolio](https://naveen098-portfolio.vercel.app/)
-- LinkedIn: [My LinkedIn Profile](https://www.linkedin.com/in/naveen-ch-705965240/)
+- GitHub: https://github.com/Naveen0987
